@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const users = require('./routes/users');
-const monedas = require('./routes/monedas');
+const currencies = require('./routes/currencies');
 
 var jwt = require('jsonwebtoken');
 
@@ -18,7 +18,8 @@ app.get('/', function(req, res){
 });
 
 app.use('/users', users);
-app.use('/monedas', validateUser, monedas);
+app.use('/currencies', currencies);
+//app.use('/monedas', validateUser, monedas);
 app.get('/favicon.ico', function(req, res){
     res.sendStatus(204);
 });

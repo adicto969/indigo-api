@@ -5,21 +5,20 @@ validator.isRequired = function (val) {
     return val != null;
   }
 
-//BookShelf.plugin('registry');
 BookShelf.plugin('bookshelf-validate', {
     validator: validator,
     validateOnSave: true
 });
 
   
-var Moneda = BookShelf.Model.extend({
-    tableName: 'monedas',
+var Currency = BookShelf.Model.extend({
+    tableName: 'currencies',
     hasTimestamps: true,
+    idAttribute: 'Id',
     validations: {
-        prueba: 'isRequired',
-        Nombre: 'isRequired',
-        Enabled: 'isRequired'
+        Code: 'isRequired',
+        Name: 'isRequired'
       }
 });
 
-module.exports = BookShelf.model('Moneda', Moneda);
+module.exports = BookShelf.model('Currency', Currency);
