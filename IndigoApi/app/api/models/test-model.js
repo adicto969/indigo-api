@@ -11,14 +11,14 @@ BookShelf.plugin('bookshelf-validate', {
 });
 
   
-var Currency = BookShelf.Model.extend({
-    tableName: 'Currencies',
+var TestModel = BookShelf.Model.extend({
+    tableName: 'TestModels',
     hasTimestamps: true,
     idAttribute: 'Id',
     validations: {
         Code: 'isRequired',
-        Name: 'isRequired'
+        Name: 'isRequired',
       }
 });
 
-module.exports = BookShelf.model('Currency', Currency);
+module.exports = BookShelf.model('TestModel', TestModel);

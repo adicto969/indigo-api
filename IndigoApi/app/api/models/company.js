@@ -11,14 +11,16 @@ BookShelf.plugin('bookshelf-validate', {
 });
 
   
-var Currency = BookShelf.Model.extend({
-    tableName: 'Currencies',
+var Company = BookShelf.Model.extend({
+    tableName: 'Companies',
     hasTimestamps: true,
     idAttribute: 'Id',
     validations: {
-        Code: 'isRequired',
-        Name: 'isRequired'
+        Name: 'isRequired',
+        BusinessName: 'isRequired',
+        RFC: 'isRequired',
+        SponsorId: 'isRequired'
       }
 });
 
-module.exports = BookShelf.model('Currency', Currency);
+module.exports = BookShelf.model('Company', Company);

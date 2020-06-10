@@ -10,15 +10,17 @@ BookShelf.plugin('bookshelf-validate', {
     validateOnSave: true
 });
 
+
   
-var Currency = BookShelf.Model.extend({
-    tableName: 'Currencies',
+var TestQuestion = BookShelf.Model.extend({
+    tableName: 'TestQuestions',
     hasTimestamps: true,
     idAttribute: 'Id',
     validations: {
-        Code: 'isRequired',
-        Name: 'isRequired'
+        TestId: 'isRequired',
+        Question: 'isRequired',
+        LevelQuestion: 'isRequired'
       }
 });
 
-module.exports = BookShelf.model('Currency', Currency);
+module.exports = BookShelf.model('TestQuestion', TestQuestion);

@@ -5,6 +5,13 @@ const app = express();
 
 const users = require('./routes/users');
 const currencies = require('./routes/currencies');
+const userTypes = require('./routes/user-types');
+const sponsors = require('./routes/sponsors');
+const companies = require('./routes/companies');
+const products = require('./routes/products');
+const testModels = require('./routes/test-models');
+const tests = require('./routes/tests');
+const testQuestions= require('./routes/test-questions');
 
 var jwt = require('jsonwebtoken');
 
@@ -12,15 +19,23 @@ app.set('secretKey', 'ClaveSecreta');
 
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({extended: false}));
 app.get('/', function(req, res){
     res.json({"tutorial" : "Construyendo una API REST con NodeJS"});
 });
 
 app.use('/users', users);
 app.use('/currencies', currencies);
+app.use('/usertypes', userTypes);
+app.use('/sponsors', sponsors);
+app.use('/companies', companies);
+app.use('/products', products);
+app.use('/testmodels', testModels);
+app.use('/tests', tests);
+app.use('/testquestions', testQuestions);
 //app.use('/monedas', validateUser, monedas);
-app.get('/favicon.ico', function(req, res){
+
+app.get('/favicon.ico', function (req, res) {
     res.sendStatus(204);
 });
 
