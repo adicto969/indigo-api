@@ -45,7 +45,32 @@ module.exports = {
                 res.status(500).json({ status: "error", message: err.message, data: null });
             })
     },
+    getActive: function (req, res) {
+        Users.query({ where: { Enabled: true } })
+            .fetch()
+            .then(function (collection) {
+                res.json({ status: "Ok", message: collection.length > 0 ? " Users found!" : "Empty List", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
+    filter: function (req, res) {
+        Users.forge()
+            .fetchPage({
+                pageSize: req.params.pageSize,
+                page: req.params.page
+            })
+            .then(function (collection) {
+                res.json({ status: "Ok", message: "List of Companies!", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
     create: function (req, res) {
+        req.body.Password = bcrypt.hashSync(req.body.Password, saltRounds)
+
         User.forge(req.body)
             .save()
             .then(function (model) {
@@ -75,7 +100,7 @@ module.exports = {
     },
     authenticate: function (req, res) {
         User.forge({
-            email: req.body.email
+            Mail: req.body.Mail
         })
             .fetch()
             .then(function (model) {
@@ -83,8 +108,8 @@ module.exports = {
                     res.status(404).json({ status: "not found", message: "User Not Found", data: null })
                 }
                 else {
-                    if (bcrypt.compareSync(req.body.password, model.toJSON().password)) {
-                        const token = jwt.sign({ Id: user.toJSON().Id }, req.app.get('secretKey'), { expiresIn: '1h' });
+                    if (bcrypt.compareSync(req.body.Password, model.toJSON().Password)) {
+                        const token = jwt.sign({ Id: model.toJSON().Id }, req.app.get('secretKey'), { expiresIn: '1h' });
                         res.json({ status: 'Ok', message: "Authenticate User!", data: { user: model.toJSON(), token: token } });
                     }
                     else

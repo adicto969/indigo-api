@@ -27,6 +27,16 @@ module.exports = {
                 res.status(500).json({ status: "error", message: err.message, data: null });
             })
     },
+    getActive: function (req, res) {
+        Currencies.query({ where: { Enabled: true } })
+            .fetch()
+            .then(function (collection) {
+                res.json({ status: "Ok", message: collection.length > 0 ? " Currencies found!" : "Empty List", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
     create: function (req, res) {
         Currency.forge(req.body)
             .save()

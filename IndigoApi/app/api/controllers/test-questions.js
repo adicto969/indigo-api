@@ -48,20 +48,6 @@ module.exports = {
             .catch(function (err) {
                 res.status(500).json({ status: "error", message: err.message, data: null });
             })
-        /*let list = [];
-        console.log(req.body);
-        req.body.forEach(p => {
-            TestQuestion.forge(p)
-                .save()
-                .then(function (model) {
-                    list.push(model);
-                })
-                .catch(function (err) {
-                    res.status(500).json({ status: "error", message: err.message, data: null });
-                })
-        });
-
-        res.json({ status: "Ok", message: "Question added sucessfully!", data: list });*/
     },
     create: function (req, res) {
         TestQuestion.forge(req.body)

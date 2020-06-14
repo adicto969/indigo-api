@@ -27,6 +27,29 @@ module.exports = {
                 res.status(500).json({ status: "error", message: err.message, data: null });
             })
     },
+    getActive: function (req, res) {
+        Tests.query({ where: { Enabled: true } })
+            .fetch()
+            .then(function (collection) {
+                res.json({ status: "Ok", message: collection.length > 0 ? "Tests found!" : "Empty List", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
+    filter: function (req, res) {
+        Tests.forge()
+            .fetchPage({
+                pageSize: req.params.pageSize,
+                page: req.params.page
+            })
+            .then(function (collection) {
+                res.json({ status: "Ok", message: "List of Tests!", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
     create: function (req, res) {
         Test.forge(req.body)
             .save()

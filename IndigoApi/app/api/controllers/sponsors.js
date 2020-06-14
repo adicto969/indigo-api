@@ -27,6 +27,29 @@ module.exports = {
                 res.status(500).json({ status: "error", message: err.message, data: null });
             })
     },
+    getActive: function (req, res) {
+        Sponsors.query({ where: { Enabled: true } })
+            .fetch()
+            .then(function (collection) {
+                res.json({ status: "Ok", message: collection.length > 0 ? " Sponsors found!" : "Empty List", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
+    filter: function (req, res) {
+        Sponsors.forge()
+            .fetchPage({
+                pageSize: req.params.pageSize,
+                page: req.params.page
+            })
+            .then(function (collection) {
+                res.json({ status: "Ok", message: "List of Sponsors!", data: collection });
+            })
+            .catch(function (err) {
+                res.status(500).json({ status: "error", message: err.message, data: null });
+            })
+    },
     create: function (req, res) {
         Sponsor.forge(req.body)
             .save()
