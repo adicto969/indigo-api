@@ -5,6 +5,7 @@ class CreateSelect extends StatelessWidget {
   final String placeholder;
   final String label;
   final double width;
+  final List<dynamic> models;
   final String Function(String) validator;
   final Function(dynamic value) onChanged;
   final Function(dynamic value) onSaved;
@@ -16,7 +17,8 @@ class CreateSelect extends StatelessWidget {
     this.width,
     this.validator,
     this.onChanged,
-    this.onSaved
+    this.onSaved,
+    this.models
     }) : super(key: key);
 
   @override 
@@ -38,18 +40,37 @@ class CreateSelect extends StatelessWidget {
           ),
           Container(
             width: width,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-              child: new DropdownButton(
-                hint: Text(this.placeholder),
-                items: <String>['Prueba 1', 'Prueba 2', 'PRUEBA 3', 'Prueba 4'].map((String value) {
-                  return new DropdownMenuItem<String>(
-                  value: value,
-                  child: new Text(value),
+            padding: EdgeInsets.symmetric(vertical: 15),
+            child: Container(
+              child: FormField<String>(
+                builder: (FormFieldState<String> stateField) {
+                  return InputDecorator(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(),
+                      fillColor: Colors.white
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<int>(
+                        value: 1,
+                        isDense: true,
+                        icon: Icon(Icons.keyboard_arrow_down, size: 35),
+                        onChanged: (int val) {},
+                        items: this.models.map((dynamic value) {
+                          return new DropdownMenuItem<int>(
+                            value: value.id,
+                            child: new Text(value.label),
+                          );
+                        }).toList(),
+                      ),
+                    ),
                   );
-                }).toList(),
-                onChanged: (value) => this.onChanged(value),
-              ),
+                },
+                validator: (val) {
+                  return val.isEmpty ? null : 'Selecciona una opcion';
+                },
+              )
             ),
           )
         ],

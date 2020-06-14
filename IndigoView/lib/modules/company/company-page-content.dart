@@ -68,6 +68,7 @@ class CompanyPageContent extends StatelessWidget {
                   label: 'Sponsor*',
                   placeholder: 'Ingresa el sponsor',
                   validator: registerPageState.validEmpy,
+                  models: [{id: 1, label: ''}],
                   onChanged: (value) {
                     this.registerPageState.setValue(value, 'sponsorId');
                   },
