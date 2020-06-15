@@ -80,11 +80,12 @@ class ProductPageContent extends StatelessWidget {
                         ),
                         CreateSelect(
                           width: registerPageState.widthContainer, 
-                          label: 'Moneda*',
-                          placeholder: 'Ingresa el precio del producto',
+                          label: 'Modena*',
+                          placeholder: 'Ingresa la Moneda',
                           validator: registerPageState.validEmpy,
+                          models: [],
                           onChanged: (value) {
-                            this.registerPageState.setValue(value, 'currencyId');
+                            this.registerPageState.setValue(value, 'currency');
                           },
                         ),
                         CreateInput(

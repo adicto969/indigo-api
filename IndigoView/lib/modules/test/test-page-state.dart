@@ -3,22 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:indigo/modules/common/dialog/dialog-video.dart';
 import 'package:indigo/modules/common/video-item/video-item.dart';
-import 'package:indigo/modules/currency/models/currency-model.dart';
-import 'package:indigo/modules/service/currency-service.dart';
-import 'package:indigo/utils/ValidatorText.dart';
-import 'currency-page-content.dart';
-import 'currency-page.dart';
+import 'package:indigo/modules/test/models/test-model.dart';
+import 'test-page-content.dart';
+import 'test-page.dart';
 import 'package:video_player/video_player.dart';
 import 'package:indigo/utils/HoverExtensions.dart';
 
-class CurrencyPageState extends State<CurrencyPage> {
+class TestPageState extends State<TestPage> {
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool reader = false;
   Color readerColor = Colors.black;
-  Currency register = new Currency();
-  CurrencyService service = new CurrencyService();
+  Test register = new Test();
 
   double get getWidth {
     return MediaQuery.of(context).size.width;
@@ -61,13 +58,10 @@ class CurrencyPageState extends State<CurrencyPage> {
   }
 
   void submit() {    
-     formKey.currentState.save();
-     //Navigator.of(context).pushNamed('/currency');
-      print(jsonEncode(this.register));
-      service.create(this.register);
-
     if (formKey.currentState.validate() && reader) {
-     print("entra");
+      formKey.currentState.save();
+      Navigator.of(context).pushNamed('/currency');
+      print(jsonEncode(this.register));
     }
 
     if (!reader) {
@@ -135,7 +129,7 @@ class CurrencyPageState extends State<CurrencyPage> {
           ),
         )
       ),
-      body: CurrencyPageContent(registerPageState: this),
+      body: TestPageContent(registerPageState: this),
     );
   }
 }

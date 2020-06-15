@@ -87,15 +87,7 @@ class CurrencyPageContent extends StatelessWidget {
                             this.registerPageState.setValue(value, 'name');
                           },
                         ),
-                        Text('Enabled', style: TextStyle(color: registerPageState.readerColor)),
-                        Checkbox(
-                                  value: registerPageState.reader,
-                                  onChanged: (value){
-                                    this.registerPageState.setValue(value, 'enabled');
-                                  },
-                                  
-                        ),
-                        
+                       
                         Container(
                           width: registerPageState.widthContainer,
                           child: Padding(
@@ -106,7 +98,7 @@ class CurrencyPageContent extends StatelessWidget {
                                 child: FlatButton(
                                         onPressed: registerPageState.submit,
                                         child: Text(
-                                          'Guardra',
+                                          'Guardar',
                                           style: TextStyle(
                                               color: Colors.white),
                                         ),

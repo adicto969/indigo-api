@@ -9,6 +9,9 @@ import 'package:indigo/modules/currency/currency-module.dart';
 import 'package:indigo/modules/product/product-module.dart';
 import 'package:indigo/modules/test-models/test-model-module.dart';
 import 'package:indigo/modules/sponsor/sponsor-module.dart';
+import 'package:indigo/modules/test-question/test-question-module.dart';
+import 'package:indigo/modules/test/test-module.dart';
+import 'package:indigo/modules/user/user-module.dart';
 
 class MainRouting {
 
@@ -31,6 +34,12 @@ class MainRouting {
         return _getPageRoute(SponsorModule(), settings.name);
       case 'company':
         return _getPageRoute(CompanyModule(), settings.name);
+      case 'user':
+        return _getPageRoute(UserModule(), settings.name);
+      case 'test':
+        return _getPageRoute(TestModule(), settings.name);
+      case 'testquestion':
+        return _getPageRoute(TestQuestionModule(), settings.name);
       case 'index':
       case 'index/profile':
         return MaterialPageRoute(builder: (_) => LayoutModule(), settings: RouteSettings(name: settings.name));

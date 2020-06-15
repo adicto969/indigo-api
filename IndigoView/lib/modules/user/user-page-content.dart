@@ -1,16 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:indigo/modules/sponsor/models/sponsor-model.dart';
 import 'package:indigo/utils/CreateInput.dart';
 import 'package:indigo/utils/CreateSelect.dart';
 import 'package:indigo/utils/HexColor.dart';
-import 'company-page-state.dart';
+import 'user-page-state.dart';
 import 'package:indigo/utils/HoverExtensions.dart';
 
-class CompanyPageContent extends StatelessWidget {
-  final CompanyPageState registerPageState;
+class UserPageContent extends StatelessWidget {
+  final UserPageState registerPageState;
   
-  const CompanyPageContent({Key key, this.registerPageState});
+  const UserPageContent({Key key, this.registerPageState});
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +65,12 @@ class CompanyPageContent extends StatelessWidget {
                 ),
                 CreateSelect(
                   width: registerPageState.widthContainer, 
-                  label: 'Sponsor*',
-                  placeholder: 'Ingresa el sponsor',
+                  label: 'Empresa*',
+                  placeholder: 'Seleccione la empresa',
                   validator: registerPageState.validEmpy,
                   models: [],
                   onChanged: (value) {
-                    this.registerPageState.setValue(value, 'sponsorId');
+                    this.registerPageState.setValue(value, 'companyId');
                   },
                 ),
                 Container(
@@ -82,21 +81,41 @@ class CompanyPageContent extends StatelessWidget {
                         CreateInput(
                           width: registerPageState.widthContainer,
                           label: 'Nombre*',
-                          placeholder: 'Ingresa el nombre del sponsor',
+                          placeholder: 'Ingrese el nombre',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
-                            this.registerPageState.setValue(value, 'name');
+                            this.registerPageState.setValue(value, 'firsName');
                           },
                         ),
                         CreateInput(
                           width: registerPageState.widthContainer, 
-                          label: 'Razón Social*',
-                          placeholder: 'Ingrese la Razón Social',
+                          label: 'Apellidos*',
+                          placeholder: 'Ingrese los apellidos',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
-                            this.registerPageState.setValue(value, 'businessName');
+                            this.registerPageState.setValue(value, 'lastName');
+                          },
+                        ),
+                        CreateInput(
+                          width: registerPageState.widthContainer, 
+                          label: 'Correo',
+                          placeholder: 'Ingrese el Correo',
+                          validator: registerPageState.validEmpy,
+                          type: TextInputType.text,
+                          onSaved: (value) {
+                            this.registerPageState.setValue(value, 'mail');
+                          },
+                        ),
+                        CreateInput(
+                          width: registerPageState.widthContainer, 
+                          label: 'Teléfono',
+                          placeholder: 'Ingrese el Teléfono',
+                          validator: registerPageState.validEmpy,
+                          type: TextInputType.text,
+                          onSaved: (value) {
+                            this.registerPageState.setValue(value, 'phone');
                           },
                         ),
                         CreateInput(
@@ -112,50 +131,11 @@ class CompanyPageContent extends StatelessWidget {
                         CreateInput(
                           width: registerPageState.widthContainer, 
                           label: 'Dirección',
-                          placeholder: 'Ingrese la dirección',
+                          placeholder: 'Ingrese la Dirección',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
                             this.registerPageState.setValue(value, 'address');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Nombre del Responsable',
-                          placeholder: 'Ingrese el responsable',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.text,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'responsableName');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Correo del Responsable',
-                          placeholder: 'Ingrese el Correo',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.text,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'responsableMail');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Teléfono del Responsable',
-                          placeholder: 'Ingrese el teléfono',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.text,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'responsablePhone');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Correos para envíos',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.multiline,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'mailForShipping');
                           },
                         ),
                         Text('Enabled', style: TextStyle(color: registerPageState.readerColor)),

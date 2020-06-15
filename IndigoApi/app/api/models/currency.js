@@ -16,8 +16,8 @@ var Currency = BookShelf.Model.extend({
     hasTimestamps: true,
     idAttribute: 'Id',
     validations: {
-        Code: 'isRequired',
-        Name: 'isRequired'
+        code: 'isRequired',
+        name: 'isRequired'
       }
 });
 

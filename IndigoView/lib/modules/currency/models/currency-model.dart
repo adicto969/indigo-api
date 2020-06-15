@@ -5,17 +5,17 @@ class Currency implements ParseJson {
 
   String name;
   String code;
-  String enabled;
+  //bool enabled = true;
 
-  Currency({ this.name, this.code, this.enabled });
+  Currency({ this.name, this.code });
 
   @override
   fromJson(String json) {
     Map<String, dynamic> jsonObject = jsonDecode(json);
     
     this.name = jsonObject['name'] as String;
-    this.code = jsonObject['email'] as String;
-    this.enabled = jsonObject['lastName'] as String;
+    this.code = jsonObject['code'] as String;
+    //this.enabled = jsonObject['enabled'] as bool;
 
     return this;
   }
@@ -24,7 +24,7 @@ class Currency implements ParseJson {
   Map<String, dynamic> toJson() => {
     'name': name,
     'code': code,
-    'enabled': enabled
+    //'enabled': enabled
   };
   
 }

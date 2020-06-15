@@ -1,16 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:indigo/modules/sponsor/models/sponsor-model.dart';
 import 'package:indigo/utils/CreateInput.dart';
 import 'package:indigo/utils/CreateSelect.dart';
 import 'package:indigo/utils/HexColor.dart';
-import 'company-page-state.dart';
+import 'test-page-state.dart';
 import 'package:indigo/utils/HoverExtensions.dart';
 
-class CompanyPageContent extends StatelessWidget {
-  final CompanyPageState registerPageState;
+class TestPageContent extends StatelessWidget {
+  final TestPageState registerPageState;
   
-  const CompanyPageContent({Key key, this.registerPageState});
+  const TestPageContent({Key key, this.registerPageState});
 
   @override
   Widget build(BuildContext context) {
@@ -64,98 +63,69 @@ class CompanyPageContent extends StatelessWidget {
                     ),
                   )
                 ),
-                CreateSelect(
-                  width: registerPageState.widthContainer, 
-                  label: 'Sponsor*',
-                  placeholder: 'Ingresa el sponsor',
-                  validator: registerPageState.validEmpy,
-                  models: [],
-                  onChanged: (value) {
-                    this.registerPageState.setValue(value, 'sponsorId');
-                  },
-                ),
-                Container(
-                  child: Form(
-                    key: registerPageState.formKey,
-                    child: Column(
-                      children: <Widget>[
-                        CreateInput(
+                CreateInput(
                           width: registerPageState.widthContainer,
                           label: 'Nombre*',
-                          placeholder: 'Ingresa el nombre del sponsor',
+                          placeholder: 'Ingrese el nombre',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
                             this.registerPageState.setValue(value, 'name');
                           },
                         ),
-                        CreateInput(
+                Container(
+                  child: Form(
+                    key: registerPageState.formKey,
+                    child: Column(
+                      children: <Widget>[
+                        CreateSelect(
                           width: registerPageState.widthContainer, 
-                          label: 'Razón Social*',
-                          placeholder: 'Ingrese la Razón Social',
+                          label: 'Modelo de Prueba*',
+                          placeholder: 'Seleccione una opción',
+                          validator: registerPageState.validEmpy,
+                          models: [],
+                          onChanged: (value) {
+                            this.registerPageState.setValue(value, 'testModelId');
+                          },
+                        ),
+                        CreateInput(
+                          width: registerPageState.widthContainer,
+                          label: 'Producto*',
+                          placeholder: 'Seleccione una opción',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
-                            this.registerPageState.setValue(value, 'businessName');
+                            this.registerPageState.setValue(value, 'productId');
                           },
                         ),
                         CreateInput(
                           width: registerPageState.widthContainer, 
-                          label: 'RFC*',
-                          placeholder: 'Ingrese el RFC',
+                          label: 'Empresa*',
+                          placeholder: 'Selecciona una opción',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
-                            this.registerPageState.setValue(value, 'rfc');
+                            this.registerPageState.setValue(value, 'companyId');
                           },
                         ),
                         CreateInput(
                           width: registerPageState.widthContainer, 
-                          label: 'Dirección',
-                          placeholder: 'Ingrese la dirección',
+                          label: 'Fecha de Inicio',
+                          placeholder: 'Ingrese la Fecha de Inicio',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
-                            this.registerPageState.setValue(value, 'address');
+                            this.registerPageState.setValue(value, 'startDate');
                           },
                         ),
                         CreateInput(
                           width: registerPageState.widthContainer, 
-                          label: 'Nombre del Responsable',
-                          placeholder: 'Ingrese el responsable',
+                          label: 'Fecha de Término',
+                          placeholder: 'Ingrese el Fecha Final',
                           validator: registerPageState.validEmpy,
                           type: TextInputType.text,
                           onSaved: (value) {
-                            this.registerPageState.setValue(value, 'responsableName');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Correo del Responsable',
-                          placeholder: 'Ingrese el Correo',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.text,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'responsableMail');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Teléfono del Responsable',
-                          placeholder: 'Ingrese el teléfono',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.text,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'responsablePhone');
-                          },
-                        ),
-                        CreateInput(
-                          width: registerPageState.widthContainer, 
-                          label: 'Correos para envíos',
-                          validator: registerPageState.validEmpy,
-                          type: TextInputType.multiline,
-                          onSaved: (value) {
-                            this.registerPageState.setValue(value, 'mailForShipping');
+                            this.registerPageState.setValue(value, 'endDate');
                           },
                         ),
                         Text('Enabled', style: TextStyle(color: registerPageState.readerColor)),

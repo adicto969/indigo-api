@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primaryColor: HexColor.fromHex('#3742b6'),
         fontFamily: 'NunitoSans'
       ),
-      initialRoute: 'company',
+      initialRoute: 'currency',
       navigatorKey: GlobalKey<NavigatorState>(),
       onGenerateRoute: MainRouting.generateRoute,
       debugShowCheckedModeBanner: false,

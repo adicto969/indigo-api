@@ -14,7 +14,7 @@ module.exports = {
     },
     getById: function (req, res) {
         Currency.forge({
-            Id: req.params.id
+            id: req.params.id
         })
             .fetch()
             .then(function (model) {
@@ -28,7 +28,7 @@ module.exports = {
             })
     },
     getActive: function (req, res) {
-        Currencies.query({ where: { Enabled: true } })
+        Currencies.query({ where: { enabled: true } })
             .fetch()
             .then(function (collection) {
                 res.json({ status: "Ok", message: collection.length > 0 ? " Currencies found!" : "Empty List", data: collection });
@@ -49,7 +49,7 @@ module.exports = {
     },
     update: function (req, res) {
         Currency.forge({
-            Id: req.params.id
+            id: req.params.id
         })
             .fetch({ require: true })
             .then(function (model) {
