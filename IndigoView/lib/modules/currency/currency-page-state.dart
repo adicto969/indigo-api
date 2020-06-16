@@ -64,7 +64,7 @@ class CurrencyPageState extends State<CurrencyPage> {
      formKey.currentState.save();
      //Navigator.of(context).pushNamed('/currency');
       print(jsonEncode(this.register));
-      service.create(this.register);
+      service.update(this.register);
 
     if (formKey.currentState.validate() && reader) {
      print("entra");

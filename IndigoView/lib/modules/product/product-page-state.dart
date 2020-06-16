@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:indigo/modules/common/dialog/dialog-video.dart';
 import 'package:indigo/modules/common/video-item/video-item.dart';
 import 'package:indigo/modules/product/models/product-model.dart';
+import 'package:indigo/modules/service/product-service.dart';
 import 'package:indigo/utils/ValidatorText.dart';
 import 'product-page-content.dart';
 import 'product-page.dart';
@@ -17,6 +19,7 @@ class ProductPageState extends State<ProductPage> {
   bool reader = false;
   Color readerColor = Colors.black;
   Product register = new Product();
+  ProductService service = new ProductService();
 
   double get getWidth {
     return MediaQuery.of(context).size.width;
@@ -59,10 +62,11 @@ class ProductPageState extends State<ProductPage> {
   }
 
   void submit() {    
+    formKey.currentState.save();
+    service.create(this.register);
+    
     if (formKey.currentState.validate() && reader) {
-      formKey.currentState.save();
-      Navigator.of(context).pushNamed('/currency');
-      print(jsonEncode(this.register));
+      
     }
 
     if (!reader) {

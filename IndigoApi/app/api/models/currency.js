@@ -14,7 +14,6 @@ BookShelf.plugin('bookshelf-validate', {
 var Currency = BookShelf.Model.extend({
     tableName: 'Currencies',
     hasTimestamps: true,
-    idAttribute: 'Id',
     validations: {
         code: 'isRequired',
         name: 'isRequired'
